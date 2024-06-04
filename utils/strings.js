@@ -6,6 +6,6 @@ export const metaStrings = {
   description:
     "Check out my personal website built with React and NextJS. Learn a bit about me, see what I'm interested in and reach out if you want to connect.",
   twitterSite: "@hurley_19",
-  url: "https://personal-blog-beryl-one.vercel.app",
+  url: "https://blog.jameshurley.ie",
   cookies: "I use cookies to enhance this site.",
 };
