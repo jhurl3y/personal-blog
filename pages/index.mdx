@@ -1,25 +1,48 @@
 ---
 type: page
-title: About
+title: Blog
 date: 2024-06-03
 ---
 
-# James Hurley
+import { getAge } from '../utils/helpers';
 
-Hey, I'm a Senior Software Engineer at Company. I enjoy working with Next.js and crafting beautiful front-end experiences.
+export async function getStaticProps() {
+  const age = getAge("1994/07/14");
+  
+  return {
+    props: {
+      age,
+    },
+  };
+}
 
-This portfolio is built with **Next.js** and a library called [Nextra](https://nextra.vercel.app/). It allows you to write Markdown and focus on the _content_ of your portfolio.
+export default function About({ age }) {
+  return (
+    <>
+      <h1>James Hurley</h1>
+      <p>Hi, I'm James, a {age} year old Senior ML Engineer at SurveyMonkey, currently based in San Francisco, CA.</p>
+      <p>Here I will share various thoughts I have and lots of pictures. Enjoy <span>😊</span></p>
+      <p>This blog is built with <a href="https://nextjs.org">Next.js</a> and a library called <a href="https://nextra.vercel.app">Nextra</a>.</p>
+      <h2>To get in touch</h2>
+      <div>
+        Twitter: <a href="https://twitter.com/hurley_19" target="_blank">@hurley_19</a><br />
+        GitHub: <a href="https://github.com/jhurl3y" target="_blank">@jhurl3y</a><br />
+        Instagram: <a href="https://instagram.com/yourname" target="_blank">@yourname</a><br />
+        Email: <a href="mailto:jhurley070@gmail.com">jhurley070@gmail.com</a>
+      </div>
+      <style jsx>{`
+        div {
+          margin-top: 20px;
+        }
+        a {
+          color: #0070f3;
+          text-decoration: none;
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+      `}</style>
+    </>
 
-[**Deploy your own**](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/blog&project-name=portfolio&repository-name=portfolio) in a few minutes.
-
----
-
-<div>
-  Twitter [@hurley_19](https://twitter.com/hurley_19)
-  <br />
-  GitHub [@jhurl3y](https://github.com/jhurl3y)
-  <br />
-  Instagram [@yourname](https://instagram.com/yourname)
-  <br />
-  Email jhurley070@gmail.com
-</div>
+);
+}
