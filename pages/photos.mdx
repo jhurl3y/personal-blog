@@ -3,29 +3,95 @@ type: page
 title: Photos
 date: 2024-06-03
 ---
+import ImageComponent from '../components/ImageComponent';
 
 # Photos
 
-Here's some of my photography.
+## Life lately.
 
 import Image from "next/image";
 
-<Image
-  src="/images/photo2.jpg"
-  alt="Photo"
-  width={1125}
-  height={750}
-  priority
-  className="next-image"
-/>
-[Unsplash ↗ ](https://unsplash.com/photos/WeYamle9fDM)
-
-<Image
-  src="/images/photo.jpg"
-  alt="Photo"
-  width={1125}
-  height={750}
-  priority
-  className="next-image"
-/>
-[Unsplash ↗ ](https://unsplash.com/photos/ndN00KmbJ1c)
+{[
+  {
+    src: 'https://hurley-site-images.s3.eu-west-1.amazonaws.com/blog/1-min.jpeg',
+    alt: 'photo 1',
+    width: 1125,
+    height: 888,
+    priority: true,
+  },
+  {
+    src: 'https://hurley-site-images.s3.eu-west-1.amazonaws.com/blog/2-min.jpeg',
+    alt: 'photo 2',
+    width: 1125,
+    height: 888,
+     priority: true,
+  },
+  {
+    src: 'https://hurley-site-images.s3.eu-west-1.amazonaws.com/blog/3-min.jpeg',
+    alt: 'photo 3',
+    width: 1125,
+    height: 888,
+    priority: false,
+  },
+  {
+    src: 'https://hurley-site-images.s3.eu-west-1.amazonaws.com/blog/4-min.jpeg',
+    alt: 'photo 4',
+    width: 1125,
+    height: 888,
+    priority: false,
+  },
+  {
+    src: 'https://hurley-site-images.s3.eu-west-1.amazonaws.com/blog/5-min.jpeg',
+    alt: 'photo 5',
+    width: 1125,
+    height: 888,
+    priority: false,
+  },
+  {
+    src: 'https://hurley-site-images.s3.eu-west-1.amazonaws.com/blog/6-min.jpeg',
+    alt: 'photo 6',
+    width: 1125,
+    height: 888,
+    priority: false,
+  },
+  {
+    src: 'https://hurley-site-images.s3.eu-west-1.amazonaws.com/blog/7-min.jpeg',
+    alt: 'photo 7',
+    width: 1125,
+    height: 888,
+    priority: false,
+  },
+  {
+    src: 'https://hurley-site-images.s3.eu-west-1.amazonaws.com/blog/8-min.jpeg',
+    alt: 'photo 8',
+    width: 1125,
+    height: 888,
+    priority: false,
+  },
+  {
+    src: 'https://hurley-site-images.s3.eu-west-1.amazonaws.com/blog/9-min.jpeg',
+    alt: 'photo 9',
+    width: 1125,
+    height: 888,
+    priority: false,
+  },
+  {
+    src: 'https://hurley-site-images.s3.eu-west-1.amazonaws.com/blog/10-min.jpeg',
+    alt: 'photo 10',
+    width: 1125,
+    height: 888,
+    priority: false,
+  }
+].map((image, index) => (
+  <div key={image.alt}>
+    <ImageComponent
+      key={index}
+      src={image.src}
+      alt={image.alt}
+      width={image.width}
+      height={image.height}
+      priority={image.priority}
+    />
+    <br />
+  </div>
+))}

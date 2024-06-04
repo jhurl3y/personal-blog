@@ -7,6 +7,17 @@ const withNextra = require("nextra")({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // any configs you need
+  images: {
+    formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "hurley-site-images.s3.eu-west-1.amazonaws.com",
+        port: "",
+        pathname: "/blog/**",
+      },
+    ],
+  },
 };
 
 module.exports = withNextra(nextConfig);
