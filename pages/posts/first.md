@@ -2,6 +2,7 @@
 title: First Post
 date: 2024-06-04
 description: First blog post with a quick intro
+draft: false
 tag: life
 author: James Hurley
 ---
