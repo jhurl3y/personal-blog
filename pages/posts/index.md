@@ -1,7 +1,7 @@
 ---
 type: posts
-title: Posts
-date: 2024-06-01
+title: My posts
+date: 2024-06-02
 ---
 
 # Posts
