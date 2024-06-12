@@ -3,15 +3,13 @@ type: page
 title: Photos
 date: 2024-06-03
 ---
-import ImageComponent from '../components/ImageComponent';
+import ImageWrapper from '../components/ImageWrapper';
 
 # Photos
 
 ## Life lately.
 
-import Image from "next/image";
-
-{[
+export const images = [
   {
     src: 'https://hurley-site-images.s3.eu-west-1.amazonaws.com/blog/1-min.jpeg',
     alt: 'photo 1',
@@ -82,17 +80,6 @@ import Image from "next/image";
     height: 888,
     priority: false,
   }
-].map((image, index) => (
-  <div key={image.alt}>
-    <ImageComponent
-      key={index}
-      src={image.src}
-      alt={image.alt}
-      width={image.width}
-      height={image.height}
-      priority={image.priority}
-      placeholder="blur"
-    />
-    <br />
-  </div>
-))}
+]
+
+<ImageWrapper images={images}/>
