@@ -11,7 +11,12 @@ import { URL } from "../../utils/constants";
 
 ## Albums
 
-<div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+<div style={{
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+  gap: '20px',
+  justifyContent: 'center',
+}}>
   <AlbumPreview
     name="Life Lately"
     coverImage={{ src: `${URL}/life_lately/1.jpeg`, alt: "Life Lately Cover" }}
