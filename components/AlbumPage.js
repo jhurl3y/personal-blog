@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import ImageWrapper from "./ImageWrapper";
-import { URL } from "../utils/constants";
+import { URL, ALBUM_IMAGES } from "../utils/constants";
 import { convertToSnakeCase, convertToTitleCase } from "../utils/helpers";
 
 const AlbumPage = () => {
@@ -9,7 +9,7 @@ const AlbumPage = () => {
 
   if (!album) return null;
 
-  const imageCount = 10; // Change this to the actual number of images per album
+  const imageCount = ALBUM_IMAGES[album];
 
   const images = Array.from({ length: imageCount }, (_, index) => ({
     src: `${URL}/${convertToSnakeCase(album)}/${index + 1}.jpeg`,
