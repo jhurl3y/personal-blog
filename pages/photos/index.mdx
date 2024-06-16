@@ -1,0 +1,25 @@
+---
+type: page
+title: Photos
+date: 2024-06-03
+---
+import ImageWrapper from '../../components/ImageWrapper';
+import AlbumPreview from '../../components/AlbumPreview';
+import { URL } from "../../utils/constants";
+
+# Photos
+
+## Albums
+
+<div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+  <AlbumPreview
+    name="Life Lately"
+    coverImage={{ src: `${URL}/life_lately/1.jpeg`, alt: "Life Lately Cover" }}
+    link="/photos/life-lately"
+  />
+  <AlbumPreview
+    name="South America"
+    coverImage={{ src: `${URL}/south_america/1.jpeg`, alt: "South America Cover" }}
+    link="/photos/south-america"
+  />
+</div>
