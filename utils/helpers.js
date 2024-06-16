@@ -14,3 +14,10 @@ export const getAge = (dateString) => {
 export const convertToSnakeCase = (str) => {
   return str.replace(/-/g, "_");
 };
+
+export const convertToTitleCase = (str) => {
+  return str
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};

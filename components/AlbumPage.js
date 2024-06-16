@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import ImageWrapper from "./ImageWrapper";
 import { URL } from "../utils/constants";
-import { convertToSnakeCase } from "../utils/helpers";
+import { convertToSnakeCase, convertToTitleCase } from "../utils/helpers";
 
 const AlbumPage = () => {
   const router = useRouter();
@@ -25,13 +25,6 @@ const AlbumPage = () => {
       <ImageWrapper images={images} />
     </div>
   );
-};
-
-const convertToTitleCase = (str) => {
-  return str
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
 };
 
 export default AlbumPage;
