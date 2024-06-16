@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import ImageWrapper from "./ImageWrapper";
 import { URL } from "../utils/constants";
+import { convertToSnakeCase } from "../utils/helpers";
 
 const AlbumPage = () => {
   const router = useRouter();
@@ -11,7 +12,7 @@ const AlbumPage = () => {
   const imageCount = 10; // Change this to the actual number of images per album
 
   const images = Array.from({ length: imageCount }, (_, index) => ({
-    src: `${URL}/${album}/${index + 1}.jpeg`,
+    src: `${URL}/${convertToSnakeCase(album)}/${index + 1}.jpeg`,
     alt: `photo ${index + 1}`,
     width: 1125,
     height: 888,

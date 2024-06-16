@@ -10,3 +10,7 @@ export const getAge = (dateString) => {
 
   return age;
 };
+
+export const convertToSnakeCase = (str) => {
+  return str.replace(/-/g, "_");
+};
