@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import ImageComponent from "./ImageComponent";
 import Loader from "./Loader";
 
@@ -14,7 +14,6 @@ const ImageWrapper = ({ images }) => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hitBottom, setHitBottom] = useState(false);
-  const observer = useRef();
   const allVisibleImagesLoaded = visibleImages.every(
     (image) => image.loaded === true
   );
