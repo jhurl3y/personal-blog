@@ -87,7 +87,6 @@ const ImageWrapper = ({ images }) => {
               width={image.width}
               height={image.height}
               priority={image.priority}
-              placeholder="blur"
               onLoadingComplete={onLoadingComplete}
             />
             <br />
