@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import ImageWrapper from "./ImageWrapper";
-import { URL, ALBUM_IMAGES } from "../utils/constants";
+import { URL, ALBUM_IMAGES, ALBUM_TITLES } from "../utils/constants";
 import { convertToSnakeCase, convertToTitleCase } from "../utils/helpers";
 
 const AlbumPage = () => {
@@ -19,9 +19,13 @@ const AlbumPage = () => {
     priority: index < 2, // Set priority for the first two images as an example
   }));
 
+  const getTitle = (album) => {
+    return ALBUM_TITLES[album] || convertToTitleCase(album);
+  };
+
   return (
     <div>
-      <h1>{convertToTitleCase(album)}</h1>
+      <h1>{getTitle(album)}</h1>
       <ImageWrapper images={images} />
     </div>
   );
