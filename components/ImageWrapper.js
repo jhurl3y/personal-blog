@@ -1,38 +1,78 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import ImageComponent from "./ImageComponent";
 import Loader from "./Loader";
 
-const NUMBER_TO_SHOW = 2;
+const NUMBER_TO_SHOW = 4;
 
 const ImageWrapper = ({ images }) => {
   const [visibleImages, setVisibleImages] = useState(
-    images.slice(0, NUMBER_TO_SHOW)
+    images.slice(0, NUMBER_TO_SHOW).map((obj) => ({
+      ...obj,
+      loaded: false,
+    }))
   );
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [hitBottom, setHitBottom] = useState(false);
   const observer = useRef();
+  const allVisibleImagesLoaded = visibleImages.every(
+    (image) => image.loaded === true
+  );
+  const allImagesLoaded =
+    allVisibleImagesLoaded && visibleImages.length === images.length;
 
-  const loadMoreImages = useCallback(() => {
-    setLoading(true);
+  const loadMoreImages = () => {
     const nextPage = page + 1;
-    const newImages = images.slice(0, nextPage * NUMBER_TO_SHOW);
-    setVisibleImages(newImages);
+    const nextImageBatch = images
+      .slice(page * NUMBER_TO_SHOW, nextPage * NUMBER_TO_SHOW)
+      .map((obj) => ({
+        ...obj,
+        loaded: false,
+      }));
+
+    setVisibleImages((prevVisibleImages) => [
+      ...prevVisibleImages,
+      ...nextImageBatch,
+    ]);
     setPage(nextPage);
-    setLoading(false);
-  }, [page, images]);
+  };
+
+  // unset loading UI when all images fetched
+  useEffect(() => {
+    if (allImagesLoaded) {
+      setLoading(false);
+    }
+  }, [allImagesLoaded]);
+
+  // if all visible images fetched, fetch more images
+  useEffect(() => {
+    if (allVisibleImagesLoaded && !allImagesLoaded && hitBottom) {
+      setLoading(true);
+      setHitBottom(false);
+      loadMoreImages();
+    }
+  }, [allVisibleImagesLoaded, hitBottom]);
 
   const lastImageRef = useCallback(
     (node) => {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          loadMoreImages();
+          setHitBottom(true);
         }
       });
       if (node) observer.current.observe(node);
     },
-    [loadMoreImages]
+    [setHitBottom]
   );
+
+  const onLoadingComplete = (img) => {
+    setVisibleImages((prevVisibleImages) =>
+      prevVisibleImages.map((image) =>
+        image.alt === img.alt ? { ...image, loaded: true } : image
+      )
+    );
+  };
 
   return (
     <div>
@@ -43,13 +83,13 @@ const ImageWrapper = ({ images }) => {
             ref={index === visibleImages.length - 1 ? lastImageRef : undefined}
           >
             <ImageComponent
-              key={index}
               src={image.src}
               alt={image.alt}
               width={image.width}
               height={image.height}
               priority={image.priority}
               placeholder="blur"
+              onLoadingComplete={onLoadingComplete}
             />
             <br />
           </div>

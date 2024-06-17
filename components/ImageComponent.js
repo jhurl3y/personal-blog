@@ -1,6 +1,13 @@
 import Image from "next/image";
 
-const ImageComponent = ({ src, alt, width, height, priority }) => (
+const ImageComponent = ({
+  src,
+  alt,
+  width,
+  height,
+  priority,
+  onLoadingComplete,
+}) => (
   <Image
     src={src}
     alt={alt}
@@ -8,6 +15,7 @@ const ImageComponent = ({ src, alt, width, height, priority }) => (
     height={height}
     priority={priority}
     className="next-image"
+    onLoadingComplete={onLoadingComplete}
   />
 );
 
