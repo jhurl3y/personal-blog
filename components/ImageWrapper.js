@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ImageComponent from "./ImageComponent";
 import Loader from "./Loader";
 
@@ -53,18 +53,21 @@ const ImageWrapper = ({ images }) => {
     }
   }, [allVisibleImagesLoaded, hitBottom]);
 
-  const lastImageRef = useCallback(
-    (node) => {
-      if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          setHitBottom(true);
-        }
-      });
-      if (node) observer.current.observe(node);
-    },
-    [setHitBottom]
-  );
+  const onScroll = () => {
+    if (
+      window.innerHeight + window.scrollY + 500 >=
+      document.documentElement.scrollHeight
+    ) {
+      setHitBottom(true);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   const onLoadingComplete = (img) => {
     setVisibleImages((prevVisibleImages) =>
@@ -78,10 +81,7 @@ const ImageWrapper = ({ images }) => {
     <div>
       {visibleImages.map((image, index) => {
         return (
-          <div
-            key={image.alt}
-            ref={index === visibleImages.length - 1 ? lastImageRef : undefined}
-          >
+          <div key={image.alt}>
             <ImageComponent
               src={image.src}
               alt={image.alt}
