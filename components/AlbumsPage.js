@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import AlbumPreview from "./AlbumPreview";
-import { URL } from "../utils/constants";
+import { URL, ALBUM_IMAGES } from "../utils/constants";
+import { getRandomNumber } from "../utils/helpers";
 
 const AlbumsPage = () => {
   const router = useRouter();
@@ -19,7 +20,9 @@ const AlbumsPage = () => {
       <AlbumPreview
         name="Life Lately"
         coverImage={{
-          src: `${URL}/life_lately/1.jpeg`,
+          src: `${URL}/life_lately/${getRandomNumber(
+            ALBUM_IMAGES["life-lately"]
+          )}.jpeg`,
           alt: "Life Lately Cover",
         }}
         link="/photos/life-lately"
@@ -27,7 +30,9 @@ const AlbumsPage = () => {
       <AlbumPreview
         name="South America"
         coverImage={{
-          src: `${URL}/south_america/1.jpeg`,
+          src: `${URL}/south_america/${getRandomNumber(
+            ALBUM_IMAGES["south-america"]
+          )}.jpeg`,
           alt: "South America Cover",
         }}
         link="/photos/south-america"
@@ -37,7 +42,9 @@ const AlbumsPage = () => {
           <AlbumPreview
             name="NYC"
             coverImage={{
-              src: `${URL}/new_york/1.jpeg`,
+              src: `${URL}/new_york/${getRandomNumber(
+                ALBUM_IMAGES["new-york"]
+              )}.jpeg`,
               alt: "New York Cover",
             }}
             link="/photos/new-york"
@@ -45,7 +52,9 @@ const AlbumsPage = () => {
           <AlbumPreview
             name="Yosemite"
             coverImage={{
-              src: `${URL}/yosemite/1.jpeg`,
+              src: `${URL}/yosemite/${getRandomNumber(
+                ALBUM_IMAGES["yosemite"]
+              )}.jpeg`,
               alt: "Yosemite Cover",
             }}
             link="/photos/yosemite"
@@ -53,7 +62,9 @@ const AlbumsPage = () => {
           <AlbumPreview
             name="DC & Nashville"
             coverImage={{
-              src: `${URL}/dc_and_nashville/1.jpeg`,
+              src: `${URL}/dc_and_nashville/${getRandomNumber(
+                ALBUM_IMAGES["dc-and-nashville"]
+              )}.jpeg`,
               alt: "DC & Nashville Cover",
             }}
             link="/photos/dc-and-nashville"

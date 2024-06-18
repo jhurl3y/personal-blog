@@ -78,7 +78,7 @@ const ImageWrapper = ({ images }) => {
 
   return (
     <div>
-      {visibleImages.map((image, index) => {
+      {visibleImages.map((image) => {
         return (
           <div key={image.alt}>
             <ImageComponent
