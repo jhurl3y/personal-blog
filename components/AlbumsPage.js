@@ -6,7 +6,7 @@ import { ALBUM_IMAGES } from "../utils/constants";
 const AlbumsPage = () => {
   const router = useRouter();
   const { show_albums } = router.query;
-  const showAlbums = show_albums === "true";
+  const showAlbums = true; // show_albums === "true";
 
   const mainAlbums = [
     {
