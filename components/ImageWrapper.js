@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ImageComponent from "./ImageComponent";
 import Loader from "./Loader";
 
-const NUMBER_TO_SHOW = 4;
+const NUMBER_TO_SHOW = 2;
 
 const ImageWrapper = ({ images }) => {
   const [visibleImages, setVisibleImages] = useState(
