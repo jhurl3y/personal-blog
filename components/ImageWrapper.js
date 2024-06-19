@@ -12,7 +12,7 @@ const ImageWrapper = ({ images }) => {
     }))
   );
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [hitBottom, setHitBottom] = useState(false);
   const allVisibleImagesLoaded = visibleImages.every(
     (image) => image.loaded === true
