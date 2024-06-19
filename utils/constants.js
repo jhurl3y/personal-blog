@@ -1,4 +1,4 @@
-export const URL = "https://hurley-site-images.s3.eu-west-1.amazonaws.com/blog";
+export const URL = "https://d3sh7ah1ts7yf7.cloudfront.net/blog";
 
 export const ALBUM_IMAGES = {
   "life-lately": 10,
