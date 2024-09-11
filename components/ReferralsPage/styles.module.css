@@ -5,6 +5,12 @@
   justify-content: flex-start;
 }
 
+@media (max-width: 768px) {
+  .referral_grid {
+    justify-content: center;
+  }
+}
+
 .image_container {
   position: relative;
   width: 250px;
