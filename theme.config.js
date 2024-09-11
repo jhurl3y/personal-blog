@@ -17,4 +17,6 @@ export default {
       `}</style>
     </footer>
   ),
+  navigation: true,
+  darkMode: true,
 };
