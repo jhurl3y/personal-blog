@@ -9,13 +9,18 @@ const referrals = [
   },
   {
     src: "/images/explorer.png",
-    alt: "Explorer Credit Card",
+    alt: "United Explorer Credit Card",
     link: "https://www.referyourchasecard.com/215A/8H1HY0Z2NX",
   },
   {
     src: "/images/amex.png",
     alt: "AMEX Gold Credit Card",
     link: "https://americanexpress.com/en-us/referral/gold-card?ref=JAMESHUCKB&XLINK=MYCP",
+  },
+  {
+    src: "/images/infinite.png",
+    alt: "United Club Infinite Card",
+    link: "https://www.referyourchasecard.com/215A/6SLG8CU5AT",
   },
 ];
 
