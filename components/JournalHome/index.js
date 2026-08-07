@@ -4,9 +4,9 @@ import styles from "./styles.module.css";
 const JournalHome = ({ latest, album }) => (
   <div className={styles.home}>
     <section className={styles.hero}>
-      <p className={styles.eyebrow}>Engineering · Travel · Photography</p>
+      <p className={styles.eyebrow}>Engineering · Travel · Life</p>
       <p className={styles.lead}>
-        Things I&apos;m building, learning, and photographing.
+        Things I&apos;m building, learning, and seeing along the way.
       </p>
       <p className={styles.copy}>
         Longer notes on building software, working with AI, and the places I get
@@ -29,9 +29,11 @@ const JournalHome = ({ latest, album }) => (
         <Link href={latest.href}>Read article →</Link>
       </article>
       <article className={styles.destination}>
-        <p className={styles.cardLabel}>Photography</p>
+        <p className={styles.cardLabel}>Photos</p>
         <h2>{album.title}</h2>
-        <p>Travel photographs and field notes from the road.</p>
+        <p>
+          Snapshots from trips, everyday life, and experiences worth keeping.
+        </p>
         <Link href={album.href}>Browse photos →</Link>
       </article>
       <article className={styles.destination}>
