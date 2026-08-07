@@ -5,22 +5,17 @@ const referrals = [
   {
     src: "/images/sapphire.png",
     alt: "Chase Sapphire Reserve",
-    link: "https://www.referyourchasecard.com/19o/SAS2WY6H38",
-  },
-  {
-    src: "/images/explorer.png",
-    alt: "United Explorer Credit Card",
-    link: "https://www.referyourchasecard.com/215A/8H1HY0Z2NX",
+    link: "https://www.referyourchasecard.com/19y/I46YT1N80X",
   },
   {
     src: "/images/amex.png",
     alt: "AMEX Gold Credit Card",
-    link: "https://americanexpress.com/en-us/referral/gold-card?ref=JAMESHUCKB&XLINK=MYCP",
+    link: "https://americanexpress.com/en-us/referral/gold-card?ref=JAMESHITiE&XL=MIANS",
   },
   {
     src: "/images/infinite.png",
     alt: "United Club Infinite Card",
-    link: "https://www.referyourchasecard.com/215A/6SLG8CU5AT",
+    link: "https://www.referyourchasecard.com/215s/GD01I7N8KD",
   },
 ];
 
