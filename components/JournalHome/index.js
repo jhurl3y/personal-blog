@@ -6,7 +6,7 @@ const JournalHome = ({ latest, album }) => (
     <section className={styles.hero}>
       <p className={styles.eyebrow}>Engineering · Travel · Photography</p>
       <p className={styles.lead}>
-        Notes from San Francisco, with roots in Galway.
+        Things I&apos;m building, learning, and photographing.
       </p>
       <p className={styles.copy}>
         Longer notes on building software, working with AI, and the places I get
@@ -17,11 +17,11 @@ const JournalHome = ({ latest, album }) => (
           Read the latest
         </Link>
         <Link href="/photos" className={styles.secondaryAction}>
-          Browse photo journals
+          Browse photos
         </Link>
       </div>
     </section>
-    <section className={styles.destinations} aria-label="Explore the journal">
+    <section className={styles.destinations} aria-label="Explore the blog">
       <article className={styles.destination}>
         <p className={styles.cardLabel}>Writing</p>
         <h2>{latest.title}</h2>
@@ -29,7 +29,7 @@ const JournalHome = ({ latest, album }) => (
         <Link href={latest.href}>Read article →</Link>
       </article>
       <article className={styles.destination}>
-        <p className={styles.cardLabel}>Photo journals</p>
+        <p className={styles.cardLabel}>Photography</p>
         <h2>{album.title}</h2>
         <p>Travel photographs and field notes from the road.</p>
         <Link href={album.href}>Browse photos →</Link>

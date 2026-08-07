@@ -11,7 +11,7 @@ const AlbumPage = () => {
   const albumData = getAlbum(album);
 
   if (!albumData) {
-    return <p>This photo journal could not be found.</p>;
+    return <p>This photo album could not be found.</p>;
   }
 
   const images = Array.from({ length: albumData.imageCount }, (_, index) => ({

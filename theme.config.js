@@ -1,7 +1,7 @@
 const YEAR = new Date().getFullYear();
 
 export default {
-  titleSuffix: " — Atlantic Journal",
+  titleSuffix: " — Blog",
   readMore: "Read article →",
   navs: [{ name: "Portfolio ↗", url: "https://www.jameshurley.ie/" }],
   dateFormatter: (date) =>

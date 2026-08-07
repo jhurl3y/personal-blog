@@ -1,5 +1,5 @@
 export const metaStrings = {
-  title: "Atlantic Journal — James Hurley",
+  title: "Blog — James Hurley",
   author: "James Hurley",
   keywords:
     "James Hurley, James, Hurley, Personal Website, Website, Galway, Dublin, SurveyMonkey, Ex Ordo, NUIG, Rahoon, React, Python, NextJS, Docker, Python, Ruby, Javascript",
