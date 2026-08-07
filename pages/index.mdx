@@ -1,24 +1,17 @@
 ---
 type: page
-title: Blog
+title: Atlantic Journal
 date: 2024-01-01
 ---
 
-import { getAge } from '../utils/helpers';
+import JournalHome from "../components/JournalHome";
 
-# James Hurley
-
-Hi, I'm James, a {getAge("1994/07/14")} year old Senior ML Engineer at SurveyMonkey, currently based in San Francisco, CA.
-
-Here I will share various thoughts I have and lots of pictures. Enjoy 😊
-
-This blog is built with <a href="https://nextjs.org">Next.js</a> and a library called <a href="https://nextra.vercel.app">Nextra</a>.
-
-## To get in touch
-
-<div>
-  Twitter [@hurley_19](https://twitter.com/hurley_19)<br />
-  GitHub [@jhurl3y](https://github.com/jhurl3y)<br />
-  Instagram [@jhurley_94](https://instagram.com/jhurley_94)<br />
-  Email jhurley070@gmail.com
-</div>
+<JournalHome
+  latest={{
+    title: "My first Post",
+    description:
+      "A quick introduction to the journal and the topics it will cover.",
+    href: "/posts/first_post",
+  }}
+  album={{ title: "Life Lately", href: "/photos/life-lately" }}
+/>

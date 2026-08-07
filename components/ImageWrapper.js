@@ -1,104 +1,139 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ImageComponent from "./ImageComponent";
-import Loader from "./Loader";
+import styles from "./ImageWrapper.module.css";
 
-const NUMBER_TO_SHOW = 2;
+const BATCH_SIZE = 24;
 
 const ImageWrapper = ({ images }) => {
-  const [visibleImages, setVisibleImages] = useState(
-    images.slice(0, NUMBER_TO_SHOW).map((obj) => ({
-      ...obj,
-      loaded: false,
-    }))
+  const [visibleCount, setVisibleCount] = useState(
+    Math.min(BATCH_SIZE, images.length),
   );
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
-  const [hitBottom, setHitBottom] = useState(false);
-  const allVisibleImagesLoaded = visibleImages.every(
-    (image) => image.loaded === true
-  );
-  const allImagesLoaded =
-    allVisibleImagesLoaded && visibleImages.length === images.length;
-
-  const loadMoreImages = () => {
-    const nextPage = page + 1;
-    const nextImageBatch = images
-      .slice(page * NUMBER_TO_SHOW, nextPage * NUMBER_TO_SHOW)
-      .map((obj) => ({
-        ...obj,
-        loaded: false,
-      }));
-
-    setVisibleImages((prevVisibleImages) => [
-      ...prevVisibleImages,
-      ...nextImageBatch,
-    ]);
-    setPage(nextPage);
-  };
-
-  // unset loading UI when all images fetched
-  useEffect(() => {
-    if (allImagesLoaded) {
-      setLoading(false);
-    }
-  }, [allImagesLoaded]);
-
-  // if all visible images fetched, fetch more images
-  useEffect(() => {
-    if (allVisibleImagesLoaded && !allImagesLoaded && hitBottom) {
-      setLoading(true);
-      setHitBottom(false);
-      loadMoreImages();
-    }
-  }, [allVisibleImagesLoaded, hitBottom]);
-
-  const onScroll = () => {
-    if (
-      window.innerHeight + window.scrollY + 500 >=
-      document.documentElement.scrollHeight
-    ) {
-      setHitBottom(true);
-    }
-  };
+  const [activeIndex, setActiveIndex] = useState(null);
+  const sentinelRef = useRef(null);
+  const triggerRefs = useRef([]);
+  const activeImage = activeIndex === null ? null : images[activeIndex];
+  const visibleImages = images.slice(0, visibleCount);
 
   useEffect(() => {
-    window.addEventListener("scroll", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
+    const sentinel = sentinelRef.current;
+    if (!sentinel || visibleCount >= images.length) return undefined;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setVisibleCount((count) => Math.min(count + BATCH_SIZE, images.length));
+      }
+    });
+
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [images.length, visibleCount]);
+
+  useEffect(() => {
+    if (activeIndex === null) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") setActiveIndex(null);
+      if (event.key === "ArrowRight") {
+        setActiveIndex((index) => Math.min(index + 1, images.length - 1));
+      }
+      if (event.key === "ArrowLeft") {
+        setActiveIndex((index) => Math.max(index - 1, 0));
+      }
     };
-  }, []);
 
-  const onLoadingComplete = (img) => {
-    setVisibleImages((prevVisibleImages) =>
-      prevVisibleImages.map((image) =>
-        image.alt === img.alt ? { ...image, loaded: true } : image
-      )
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeIndex, images.length]);
+
+  const closeLightbox = () => {
+    const closingIndex = activeIndex;
+    setActiveIndex(null);
+    window.requestAnimationFrame(() =>
+      triggerRefs.current[closingIndex]?.focus(),
     );
   };
 
   return (
-    <div>
-      {visibleImages.map((image) => {
-        return (
-          <div key={image.alt}>
+    <>
+      <div className={styles.gallery}>
+        {visibleImages.map((image, index) => (
+          <button
+            className={styles.imageButton}
+            key={image.src}
+            onClick={() => setActiveIndex(index)}
+            ref={(element) => {
+              triggerRefs.current[index] = element;
+            }}
+            type="button"
+          >
             <ImageComponent
               src={image.src}
               alt={image.alt}
               width={image.width}
               height={image.height}
-              priority={image.priority}
-              onLoadingComplete={onLoadingComplete}
+              priority={index < 2}
+              sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
             />
-            <br />
+          </button>
+        ))}
+      </div>
+      {visibleCount < images.length && (
+        <div ref={sentinelRef} className={styles.sentinel} />
+      )}
+      {activeImage && (
+        <div
+          className={styles.lightbox}
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeImage.alt}
+        >
+          <button
+            className={styles.close}
+            type="button"
+            onClick={closeLightbox}
+            aria-label="Close image viewer"
+          >
+            ×
+          </button>
+          <button
+            className={styles.previous}
+            type="button"
+            onClick={() => setActiveIndex((index) => Math.max(index - 1, 0))}
+            disabled={activeIndex === 0}
+            aria-label="Previous image"
+          >
+            ←
+          </button>
+          <div className={styles.lightboxImage}>
+            <ImageComponent
+              src={activeImage.src}
+              alt={activeImage.alt}
+              width={activeImage.width}
+              height={activeImage.height}
+              priority
+              sizes="95vw"
+            />
+            <p>{activeImage.alt}</p>
           </div>
-        );
-      })}
-      {loading && (
-        <div style={{ textAlign: "center", padding: "10px" }}>
-          <Loader />
+          <button
+            className={styles.next}
+            type="button"
+            onClick={() =>
+              setActiveIndex((index) => Math.min(index + 1, images.length - 1))
+            }
+            disabled={activeIndex === images.length - 1}
+            aria-label="Next image"
+          >
+            →
+          </button>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

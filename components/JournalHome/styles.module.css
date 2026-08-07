@@ -1,0 +1,78 @@
+.home {
+  margin-top: 2rem;
+}
+.hero {
+  border-top: 1px solid var(--atlantic-route);
+  padding: 3rem 0 4rem;
+}
+.eyebrow,
+.cardLabel {
+  color: var(--atlantic-link);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  margin: 0;
+  text-transform: uppercase;
+}
+.lead {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(2.25rem, 6vw, 4.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.94;
+  margin: 1rem 0;
+  max-width: 12ch;
+}
+.copy {
+  color: var(--atlantic-muted);
+  font-size: 1.2rem;
+  max-width: 48ch;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.primaryAction,
+.secondaryAction {
+  font-weight: 600;
+  text-decoration: none;
+}
+.primaryAction {
+  background: var(--atlantic-link);
+  color: var(--atlantic-action-text);
+  padding: 0.75rem 1rem;
+}
+.secondaryAction {
+  border-bottom: 1px solid currentColor;
+  padding: 0.75rem 0;
+}
+.destinations {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.destination {
+  border-top: 2px solid var(--atlantic-route);
+  padding: 1.25rem 0;
+}
+.destination h2 {
+  font-size: 1.35rem;
+  margin: 0.75rem 0;
+}
+.destination p:not(.cardLabel) {
+  color: var(--atlantic-muted);
+  margin: 0 0 1rem;
+}
+.destination a {
+  font-weight: 600;
+}
+@media (max-width: 700px) {
+  .hero {
+    padding: 2rem 0 3rem;
+  }
+  .destinations {
+    grid-template-columns: 1fr;
+  }
+}
