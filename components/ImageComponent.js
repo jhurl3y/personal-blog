@@ -32,6 +32,8 @@ const ImageComponent = ({
   width,
   height,
   priority,
+  sizes,
+  className,
   onLoadingComplete,
 }) => {
   return (
@@ -41,9 +43,10 @@ const ImageComponent = ({
       width={width}
       height={height}
       priority={priority}
-      className="next-image"
+      sizes={sizes}
+      className={`next-image ${className || ""}`}
       placeholder={`data:image/svg+xml;base64,${toBase64(
-        getShimmer(width, height)
+        getShimmer(width, height),
       )}`}
       onLoadingComplete={onLoadingComplete}
     />

@@ -1,65 +1,135 @@
-@font-face {
-  font-family: "Inter var";
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: block;
-  src: url(/fonts/Inter-roman.latin.var.woff2) format("woff2");
+:root {
+  --nextra-bg: 232, 228, 220;
+  --atlantic-slate: #2b373b;
+  --atlantic-limestone: #e8e4dc;
+  --atlantic-ink: #14110f;
+  --atlantic-chalk: #fafaf8;
+  --atlantic-sea-glass: #7fa8a0;
+  --atlantic-deep-sea: #2f5d57;
+  --atlantic-signal: #e4572e;
+  --atlantic-mist: #4a585d;
+  --atlantic-route: var(--atlantic-sea-glass);
+  --atlantic-link: var(--atlantic-deep-sea);
+  --atlantic-muted: var(--atlantic-mist);
+  --atlantic-action-text: var(--atlantic-chalk);
 }
-@font-face {
-  font-family: "Inter var";
-  font-style: italic;
-  font-weight: 100 900;
-  font-display: block;
-  src: url(/fonts/Inter-italic.latin.var.woff2) format("woff2");
-  font-named-instance: "Italic";
+
+.dark {
+  --nextra-bg: 23, 33, 38;
+  --atlantic-route: var(--atlantic-sea-glass);
+  --atlantic-link: var(--atlantic-sea-glass);
+  --atlantic-muted: #bfc8ca;
+  --atlantic-action-text: var(--atlantic-ink);
 }
 
 body {
-  font-family: "Inter var", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  -webkit-font-smoothing: subpixel-antialiased;
-  font-feature-settings: "case" 1, "cpsp" 1, "dlig" 1, "cv01" 1, "cv02",
-    "cv03" 1, "cv04" 1;
-  font-variation-settings: "wght" 450;
-  font-variant: common-ligatures contextual;
-  letter-spacing: -0.02em;
-}
-b,
-strong,
-h3,
-h4,
-h5,
-h6 {
-  font-variation-settings: "wght" 650;
-}
-h1 {
-  font-variation-settings: "wght" 850;
-}
-h2 {
-  font-variation-settings: "wght" 750;
+  background: var(--atlantic-limestone);
+  color: var(--atlantic-ink);
+  font-family:
+    var(--font-body),
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
 }
 
-@media screen and (min-device-pixel-ratio: 1.5),
-  screen and (min-resolution: 1.5dppx) {
-  body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+.dark body {
+  background: #172126;
+  color: var(--atlantic-chalk);
 }
 
-details summary {
-  cursor: pointer;
+article._container {
+  max-width: 74rem;
+  padding: 2.5rem 1.5rem 4rem;
 }
 
-img.next-image {
-  margin: 0;
+article > h1 {
+  color: inherit;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin: 0 0 2rem;
+  text-transform: uppercase;
 }
 
+article > h1 + div {
+  align-items: center;
+  border-bottom: 1px solid var(--atlantic-route);
+  margin-bottom: 2.5rem !important;
+  padding-bottom: 1rem;
+}
+
+article a,
 .prose a {
-  color: #0074de;
+  color: var(--atlantic-link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+article a:hover {
+  color: var(--atlantic-signal);
+}
+article a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid var(--atlantic-signal);
+  outline-offset: 3px;
 }
 
-.nav-line .nav-link {
-  color: #69778c;
+.prose {
+  max-width: 72ch;
+}
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: inherit;
+  font-family: var(--font-display), system-ui, sans-serif;
+  letter-spacing: -0.015em;
+}
+.prose h2 {
+  border-top: 1px solid var(--atlantic-route);
+  margin-top: 3.5rem;
+  padding-top: 1rem;
+}
+.prose p,
+.prose li {
+  color: inherit;
+}
+.prose blockquote {
+  border-left-color: var(--atlantic-route);
+  color: var(--atlantic-muted);
+}
+.prose code {
+  border: 1px solid rgba(74, 88, 93, 0.25);
+  border-radius: 0;
+}
+.dark .prose code {
+  border-color: rgba(191, 200, 202, 0.3);
+}
+
+.journal-footer {
+  align-items: center;
+  border-top: 1px solid var(--atlantic-route);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: space-between;
+  margin-top: 6rem;
+  padding-top: 1.25rem;
+}
+.journal-footer span:last-child {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

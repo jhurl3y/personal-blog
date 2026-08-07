@@ -3,7 +3,22 @@ import type { AppProps } from "next/app";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Head from "next/head";
+import { Archivo, Source_Sans_3 } from "next/font/google";
 import "../styles/main.css";
+
+const display = Archivo({
+  subsets: ["latin"],
+  weight: ["700"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const body = Source_Sans_3({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-body",
+  display: "swap",
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -14,13 +29,6 @@ export default function App({ Component, pageProps }: AppProps) {
           type="application/rss+xml"
           title="RSS"
           href="/feed.xml"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Inter-roman.latin.var.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
         />
         <link
           rel="apple-touch-icon"
@@ -41,7 +49,9 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <link rel="manifest" href="/static/favicon_io/site.webmanifest" />
       </Head>
-      <Component {...pageProps} />
+      <main className={`${display.variable} ${body.variable}`}>
+        <Component {...pageProps} />
+      </main>
       <SpeedInsights />
       <Analytics />
     </>

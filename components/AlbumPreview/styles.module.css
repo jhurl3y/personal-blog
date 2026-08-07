@@ -1,55 +1,44 @@
 .album_preview {
-  margin: 20px;
-  display: inline-block;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-  position: relative;
+  border-top: 2px solid var(--atlantic-route);
   overflow: hidden;
+  padding-top: 0.75rem;
 }
-
-.album_preview:hover {
-  transform: scale(1.05); /* Zoom effect */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Shadow effect */
-}
-
 .album_link {
-  text-decoration: none;
   color: inherit;
+  display: block;
+  text-decoration: none;
 }
-
-.album_link img {
-  transition: transform 0.2s ease;
-}
-
-.album_link h3 {
-  margin-left: 12px;
-}
-
-.album_link:hover img {
-  transform: scale(1.1); /* Additional zoom effect on image hover */
-}
-
-.dark_overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.1); /* 10% black overlay */
-  transition: background 0.3s ease;
-  pointer-events: none; /* Ensure the overlay does not interfere with clicks */
-}
-
-.album_preview:hover .dark_overlay {
-  background: rgba(0, 0, 0, 0.3); /* Darker overlay on hover */
-}
-
 .image_container {
-  position: relative;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
+  position: relative;
 }
-
 .image_container img {
-  width: 100%;
   height: 100%;
+  object-fit: cover;
   transition: transform 0.3s ease;
+  width: 100%;
+}
+.album_link:hover img,
+.album_link:focus-visible img {
+  transform: scale(1.035);
+}
+.album_link:focus-visible {
+  outline: 3px solid var(--atlantic-signal);
+  outline-offset: 3px;
+}
+.album_link h3 {
+  font-size: 1.15rem;
+  margin: 0.8rem 0 0.25rem;
+}
+.dark_overlay {
+  background: linear-gradient(180deg, transparent 50%, rgba(20, 17, 15, 0.18));
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+@media (prefers-reduced-motion: reduce) {
+  .image_container img {
+    transition: none;
+  }
 }

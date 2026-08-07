@@ -1,39 +1,53 @@
 .referral_grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 32px;
-  justify-content: flex-start;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
-
+.card {
+  border-top: 2px solid var(--atlantic-route);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+.card h2 {
+  font-size: 1.2rem;
+  line-height: 1.2;
+  margin: 0.35rem 0 1rem;
+}
+.card a {
+  font-weight: 600;
+  margin-top: auto;
+}
+.issuer {
+  color: var(--atlantic-muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  margin: 1rem 0 0;
+  text-transform: uppercase;
+}
+.image_container {
+  align-items: center;
+  aspect-ratio: 1.7;
+  background: var(--atlantic-chalk);
+  border: 1px solid rgba(74, 88, 93, 0.25);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+}
+.image_container :global(img) {
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+.blurb {
+  color: var(--atlantic-muted);
+  margin-bottom: 2rem;
+  max-width: 62ch;
+}
 @media (max-width: 768px) {
   .referral_grid {
-    justify-content: center;
+    grid-template-columns: 1fr;
   }
-}
-
-.image_container {
-  position: relative;
-  width: 250px;
-  height: 150px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.05); /* Slight zoom on hover */
-  }
-}
-
-/* Remove dark overlay if not needed or make it subtle */
-.dark_overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0); /* No overlay, or reduce opacity */
-  transition: background 0.3s ease;
-}
-
-.blurb {
-  margin-bottom: 32px;
 }

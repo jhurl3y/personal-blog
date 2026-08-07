@@ -1,18 +1,12 @@
 import React from "react";
 import AlbumPreview from "./AlbumPreview";
 import { URL } from "../utils/constants";
+import styles from "./AlbumsPreviewList.module.css";
 
 const AlbumPreviewList = ({ albums }) => {
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-        gap: "20px",
-        justifyContent: "center",
-      }}
-    >
-      {albums.map((album) => (
+    <div className={styles.grid}>
+      {albums.map((album, index) => (
         <AlbumPreview
           key={album.name}
           name={album.name}
@@ -21,6 +15,7 @@ const AlbumPreviewList = ({ albums }) => {
             alt: `${album.name} Cover`,
           }}
           link={album.link}
+          priority={index < 2}
         />
       ))}
     </div>
